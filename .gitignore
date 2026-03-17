@@ -141,3 +141,6 @@ vite.config.ts.timestamp-*
 
 # Site content — copy site.config.example.ts → site.config.ts and fill in your details
 src/content/site.config.ts
+
+# Supabase config — copy config.example.toml → config.toml and add your project ID
+supabase/config.toml
