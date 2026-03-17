@@ -1,73 +1,97 @@
-# Welcome to your Lovable project
+# Therapy Site Template
 
-## Project info
+A React + Vite template for a therapist profile website (Greek content by default) with a contact form backed by Supabase Edge Functions and Resend.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Stack
 
-## How can I edit this code?
+- React 18 + TypeScript
+- Vite 5
+- Tailwind CSS
+- shadcn/ui components
+- Supabase (client + Edge Function)
+- Resend (email delivery)
 
-There are several ways of editing your application.
+## Prerequisites
 
-**Use Lovable**
+- Node.js 20+ (Vite 5 does not support Node 16)
+- npm
+- A Supabase project
+- A Resend API key (if you want the contact form email flow)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Create a New Site Instance
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+1. Clone and install:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+git clone <your-repo-url>
+cd therapy-site
+npm install
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. Create your local frontend env file:
 
-# Step 3: Install the necessary dependencies.
-npm i
+```sh
+cp .env.example .env.local
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Create your private site content file (gitignored):
+
+```sh
+cp src/content/site.config.example.ts src/content/site.config.ts
+```
+
+Then edit `src/content/site.config.ts` with your own:
+
+- Name and tagline
+- Navigation labels
+- Hero/about/approach text
+- Services titles and descriptions
+- Contact details
+
+4. Run the app locally:
+
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Default local URL: `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Contact Form Setup (Supabase + Resend)
 
-**Use GitHub Codespaces**
+The contact form calls the Supabase Edge Function at:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- `supabase/functions/send-contact-email/index.ts`
 
-## What technologies are used for this project?
+Set function secrets in Supabase:
 
-This project is built with:
+```sh
+supabase secrets set RESEND_API_KEY=your_resend_api_key
+supabase secrets set CONTACT_EMAIL=your_inbox_email
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Deploy the function:
 
-## How can I deploy this project?
+```sh
+supabase functions deploy send-contact-email
+```
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Notes:
 
-## Can I connect a custom domain to my Lovable project?
+- `CONTACT_EMAIL` is the destination inbox for form submissions.
+- The current function uses `onboarding@resend.dev` as sender; replace it with a verified sender/domain for production.
 
-Yes, you can!
+## Useful Scripts
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```sh
+npm run dev      # start local dev server
+npm run build    # production build
+npm run preview  # preview production build
+npm run lint     # run ESLint
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Content and Privacy Model
+
+- `src/content/site.config.example.ts` is the committed template.
+- `src/content/site.config.ts` contains real private content and is ignored via `.gitignore`.
+
+This allows each developer/deployment to keep its own content without leaking personal details into git history.
