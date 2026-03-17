@@ -1,0 +1,7 @@
+# Supabase local configuration template
+# Copy to config.toml and replace with your Supabase project ID
+
+project_id = "your_project_ref"
+
+[functions.send-contact-email]
+verify_jwt = false

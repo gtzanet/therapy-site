@@ -56,6 +56,48 @@ npm run dev
 
 Default local URL: `http://localhost:8080`
 
+## Local Supabase Setup
+
+To work with the contact form locally or deploy Edge Functions:
+
+1. Create your Supabase project and install the CLI:
+
+```sh
+npm install -g supabase
+```
+
+2. Initialize local Supabase (if not already done):
+
+```sh
+supabase init
+```
+
+3. Copy the example config and add your project ID:
+
+```sh
+cp supabase/config.example.toml supabase/config.toml
+```
+
+Edit `supabase/config.toml` and replace `your_project_ref` with your actual Supabase project reference ID (found in your project settings or Supabase dashboard URL).
+
+4. Start local Supabase:
+
+```sh
+supabase start
+```
+
+5. Link to your project (optional, for syncing schemas):
+
+```sh
+supabase link --project-ref <your-project-ref>
+```
+
+6. Deploy the contact form function to production:
+
+```sh
+supabase functions deploy send-contact-email --project-ref <your-project-ref>
+```
+
 ## Contact Form Setup (Supabase + Resend)
 
 The contact form calls the Supabase Edge Function at:
