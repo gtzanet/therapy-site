@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Calming sage and warm cream palette */
+    --background: 40 30% 97%;
+    --foreground: 160 15% 20%;
+
+    --card: 40 25% 95%;
+    --card-foreground: 160 15% 20%;
+
+    --popover: 40 30% 97%;
+    --popover-foreground: 160 15% 20%;
+
+    /* Sage green primary */
+    --primary: 155 25% 45%;
+    --primary-foreground: 40 30% 97%;
+
+    /* Warm sand secondary */
+    --secondary: 35 30% 90%;
+    --secondary-foreground: 160 15% 25%;
+
+    --muted: 40 20% 92%;
+    --muted-foreground: 160 10% 45%;
+
+    /* Soft teal accent */
+    --accent: 170 30% 85%;
+    --accent-foreground: 160 20% 25%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 20% 88%;
+    --input: 40 20% 88%;
+    --ring: 155 25% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --sage: 155 25% 45%;
+    --sage-light: 155 30% 92%;
+    --sage-dark: 155 25% 35%;
+    --cream: 40 30% 97%;
+    --cream-dark: 35 25% 92%;
+    --earth: 25 20% 40%;
+    --earth-light: 25 15% 60%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(40 30% 97%) 0%, hsl(155 30% 94%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(40 25% 98%) 0%, hsl(40 20% 95%) 100%);
+    --gradient-sage: linear-gradient(135deg, hsl(155 25% 45%) 0%, hsl(170 30% 50%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(160 15% 20% / 0.08);
+    --shadow-card: 0 8px 32px -8px hsl(160 15% 20% / 0.1);
+    --shadow-glow: 0 0 40px hsl(155 25% 45% / 0.15);
+
+    /* Sidebar */
+    --sidebar-background: 40 25% 95%;
+    --sidebar-foreground: 160 15% 25%;
+    --sidebar-primary: 155 25% 45%;
+    --sidebar-primary-foreground: 40 30% 97%;
+    --sidebar-accent: 155 30% 92%;
+    --sidebar-accent-foreground: 160 20% 25%;
+    --sidebar-border: 40 20% 88%;
+    --sidebar-ring: 155 25% 45%;
+  }
+
+  .dark {
+    --background: 160 20% 8%;
+    --foreground: 40 20% 95%;
+
+    --card: 160 18% 12%;
+    --card-foreground: 40 20% 95%;
+
+    --popover: 160 18% 12%;
+    --popover-foreground: 40 20% 95%;
+
+    --primary: 155 30% 55%;
+    --primary-foreground: 160 20% 8%;
+
+    --secondary: 160 15% 18%;
+    --secondary-foreground: 40 20% 90%;
+
+    --muted: 160 15% 18%;
+    --muted-foreground: 40 15% 65%;
+
+    --accent: 155 20% 25%;
+    --accent-foreground: 40 20% 95%;
+
+    --destructive: 0 55% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 160 15% 20%;
+    --input: 160 15% 20%;
+    --ring: 155 30% 55%;
+
+    --sidebar-background: 160 18% 10%;
+    --sidebar-foreground: 40 20% 90%;
+    --sidebar-primary: 155 30% 55%;
+    --sidebar-primary-foreground: 160 20% 8%;
+    --sidebar-accent: 160 15% 18%;
+    --sidebar-accent-foreground: 40 20% 90%;
+    --sidebar-border: 160 15% 20%;
+    --sidebar-ring: 155 30% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-sans {
+    font-family: 'Source Sans 3', sans-serif;
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .gradient-sage {
+    background: var(--gradient-sage);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
